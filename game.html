@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basketball Guessing Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .game-container {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+        h1 {
+            color: #333;
+        }
+        .input-container {
+            margin: 20px 0;
+        }
+        input[type="text"] {
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .correct {
+            color: green;
+        }
+        .incorrect {
+            color: red;
+        }
+
+        /* Footer styles */
+        footer {
+            position: absolute;
+            bottom: 20px;
+            text-align: center;
+            width: 100%;
+            font-size: 14px;
+        }
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-container">
+        <h1>Basketball Guessing Game</h1>
+        <p>Guess the name of the famous basketball player!</p>
+
+        <div class="input-container">
+            <input type="text" id="guess" placeholder="Enter your guess" />
+        </div>
+        
+        <button onclick="checkGuess()">Guess</button>
+
+        <div id="message" class="message"></div>
+    </div>
+
+    <footer>
+        <p><a href="scratch.html">Back to Scratch</a></p>
+    </footer>
+
+    <script>
+        // List of famous basketball players for the game
+        const players = ["Michael Jordan", "LeBron James", "Kobe Bryant", "Shaquille O'Neal", "Stephen Curry"];
+        // Pick a random player from the list
+        const randomPlayer = players[Math.floor(Math.random() * players.length)];
+
+        // Function to check the user's guess
+        function checkGuess() {
+            const userGuess = document.getElementById("guess").value.trim();
+            const messageDiv = document.getElementById("message");
+
+            // Check if the guess is correct
+            if (userGuess.toLowerCase() === randomPlayer.toLowerCase()) {
+                messageDiv.textContent = "Correct! You guessed " + randomPlayer + "!";
+                messageDiv.classList.remove("incorrect");
+                messageDiv.classList.add("correct");
+            } else {
+                messageDiv.textContent = "Incorrect! Try again.";
+                messageDiv.classList.remove("correct");
+                messageDiv.classList.add("incorrect");
+            }
+
+            // Clear the input field after each guess
+            document.getElementById("guess").value = "";
+        }
+    </script>
+
+</body>
+</html>
